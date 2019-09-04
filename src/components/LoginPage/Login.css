@@ -1,0 +1,39 @@
+.App {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("/image6.jpeg");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  text-align: center;
+  width: 400px;
+  background-color: white;
+  padding: 20px;
+}
+
+.login-container > button {
+  margin-top: 15px;
+}
+
+.login-subtext {
+  color: #9e9e9e;
+}
+
+.login-label {
+  color: #9e9e9e;
+  font-weight: bold !important;
+  text-align: left;
+  margin-top: 10px !important;
+}
+
+.login-error {
+  background-color: #e53935;
+  color: white;
+  border-radius: 2px;
+  padding: 5px;
+}
