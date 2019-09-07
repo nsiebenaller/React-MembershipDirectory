@@ -4,7 +4,7 @@ const customTheme = {
   palette: {
     primary: {
       light: '#9C27B0',
-      main: '#7B1FA2',
+      main: '#6f52ed',
       dark: '#4A148C',
       contrastText: '#FFFFFF'
     },

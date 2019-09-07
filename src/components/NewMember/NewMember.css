@@ -1,0 +1,31 @@
+.new-member-container {
+  display: flex;
+  flex-direction: column;
+}
+.new-member-container input {
+  font-family: system-ui !important;
+  font-weight: 200 !important;
+  color: #484848 !important;
+}
+
+
+#new-member-date {
+  height: 17px;
+  padding: 18.5px 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  font-size: 16px;
+}
+
+#new-member-date:hover {
+  border: 1px solid rgba(0, 0, 0, 0.87);
+}
+
+#new-member-date--open {
+  height: 17px;
+  padding: 18.5px 14px;
+  border-radius: 4px;
+  border: 2px solid #6f52ed;
+  font-size: 16px;
+}

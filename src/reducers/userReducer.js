@@ -6,7 +6,9 @@ const init = {
 };
 
 const userReducer = createReducer(init, {
-  'STORE_USER': (state, action) =>  Object.assign({}, action.payload)
+  'STORE_USER': (state, action) =>  {
+    return Object.assign({}, action.payload)
+  }
 });
 
 export default userReducer;

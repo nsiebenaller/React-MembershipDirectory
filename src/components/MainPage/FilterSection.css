@@ -1,0 +1,17 @@
+.filter-section-container {
+  margin: 60px 15px 60px 60px;
+}
+
+.filter-section {
+  position: relative;
+  width: 150px;
+  height: 100%;
+}
+
+.filter-actions {
+  height: 56px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid rgba(224, 224, 224, 1);
+}

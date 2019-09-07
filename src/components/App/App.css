@@ -11,5 +11,5 @@
   width: calc(100% - 70px);
   bottom: 0;
   right: 0;
-  overflow: auto;
+  background: #f3f5f6;
 }
