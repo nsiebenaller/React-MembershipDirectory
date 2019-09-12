@@ -6,7 +6,7 @@ import {
 import './Header.css';
 import Profile from './Profile.js';
 
-export default function Header({ user }) {
+export default function Header({ user, history }) {
 
   const [frame, setFrame] = useState(0);
   const hide = () => {
@@ -23,6 +23,7 @@ export default function Header({ user }) {
     <div className="header">
       <Profile
         user={user}
+        history={history}
       />
       <div className="noti-icon-container">
         <Badge

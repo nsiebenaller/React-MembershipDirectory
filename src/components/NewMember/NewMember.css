@@ -1,6 +1,9 @@
 .new-member-container {
   display: flex;
   flex-direction: column;
+  margin: 30px 60px 60px 60px;
+  padding: 14px 16px 14px 16px;
+  background: white;
 }
 .new-member-container input {
   font-family: system-ui !important;
@@ -8,6 +11,45 @@
   color: #484848 !important;
 }
 
+.location-container {
+  display: flex;
+}
+.location-container > div:first-child {
+  margin-right: 10px;
+  flex: 1;
+}
+.location-container > div:nth-child(2) {
+  margin-right: 10px;
+}
+
+.action-container {
+  display: flex;
+}
+.action-container > div {
+  flex: 1;
+  margin-right: 10px;
+}
+.action-container > div:last-child {
+  margin-right: 0;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+}
+.header-container > * {
+  margin-right: 10px !important;
+}
+
+
+.save-container {
+  display: flex;
+  justify-content: center;
+}
+.save-btn {
+  margin-top: 10px !important;
+  width: 50%;
+}
 
 #new-member-date {
   height: 17px;

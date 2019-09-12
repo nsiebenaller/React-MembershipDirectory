@@ -1,0 +1,9 @@
+.month-dropdown {
+  display: flex;
+  flex-direction: column;
+}
+.month-dropdown .MuiSelect-root {
+  font-family: system-ui !important;
+  font-weight: 200 !important;
+  color: #484848 !important;
+}

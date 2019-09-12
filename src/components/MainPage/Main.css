@@ -1,53 +1,25 @@
 .directory-container {
   height: 100%;
   display: flex;
+  flex-direction: column;
+}
+
+.directory-actions {
+  display: flex;
+  align-items: center;
+  margin: 30px 60px 0px 60px;
+}
+
+.directory-display {
+  display: flex;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-.directory-table-container {
-  width: 100%;
-  margin: 60px 60px 60px 15px;
+.new-member-btn > span {
+  width: 150px !important;
 }
 
-.directory-table {
-  background: white;
-  border: 1px solid rgba(224, 224, 224, 1);
-  overflow: auto;
-  max-height: 100%;
-}
-
-.address-cell {
-  max-width: 100px;
-}
-
-.email-cell {
-  max-width: 100px;
+.new-member-label {
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.sticky-header th {
-  position: sticky;
-  top: 0;
-  background: white;
-  padding: 0 !important;
-  border-bottom: none !important;
-}
-
-.sticky-header th > div {
-  padding: 14px 40px 14px 16px;
-  border-bottom: 1px solid rgba(224, 224, 224, 1);
-}
-
-.sticky-footer td {
-  position: sticky;
-  bottom: 0;
-  background: white;
-  border-bottom: none !important;
-}
-
-.sticky-footer td > div {
-  border-top: 1px solid rgba(224, 224, 224, 1);
 }

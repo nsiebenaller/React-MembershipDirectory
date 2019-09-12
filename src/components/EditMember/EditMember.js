@@ -1,33 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import './NewMember.css';
 import { Typography, Paper, Button, IconButton } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
-import CustomTextField from './TextField.js';
-import StateDropdown from './StateDropdown.js';
-import MonthDropdown from './MonthDropdown.js';
-import { create } from '../../actions/membersActions.js';
+import '../NewMember/NewMember.css';
+import CustomTextField from '../NewMember/TextField.js';
+import StateDropdown from '../NewMember/StateDropdown.js';
+import MonthDropdown from '../NewMember/MonthDropdown.js';
 import { Months } from '../../static/Months.json';
+import { update } from '../../actions/membersActions.js';
 
-const defaultState = {
-  first_name: '',
-  last_name: '',
-  address: '',
-  city: '',
-  state: 'WI',
-  zip: '',
-  home_phone: '',
-  cell_phone: '',
-  email: '',
-  membership_date: '',
-  status: '',
-  birth_day: '',
-  birth_month: '',
-  birth_fullyear: '',
-}
-function NewMember({ create, history }) {
+function EditMember({ selectedMember, history, update }) {
 
-  const [state, setValue] = useState(defaultState);
+  const [state, setValue] = useState({});
   const setState = (name) => (e) => setValue({ ...state, [name]: e.target.value });
 
   const setBirthMonth = (name) => (e) => {
@@ -42,12 +26,18 @@ function NewMember({ create, history }) {
     if(birthDay < 1) setValue({ ...state, [name]: '' });
   }
 
-  const clearForm = () => setValue(defaultState);
+  useEffect(() => {
+    const birthMonth = selectedMember.birth_month ? Months[selectedMember.birth_month] : Months[0];
+    if(selectedMember) setValue({ ...selectedMember, birth_month: birthMonth ? birthMonth.name : 'None' });
+  }, [selectedMember])
 
-  const createMember = async () => {
+  const redirectToMain = () => history.push('/app');
+
+  const saveMember = async () => {
     const birthMonth = Months.findIndex(month => month.name === state.month);
 
     const request = {
+      id: state.id,
       first_name: state.first_name,
       last_name: state.last_name,
       address: state.address,
@@ -65,17 +55,26 @@ function NewMember({ create, history }) {
       birth_month: birthMonth,
       birth_fullyear: parseInt(state.birth_fullyear)
     }
-    const resp = await create(request);
+    const resp = await update(request);
     if(resp.status === 200) {
-      window.alert("Member created!");
-      clearForm();
+      window.alert("Member saved!");
     }
     else {
-      window.alert("Error creating member!")
+      window.alert("Error saving member!")
     }
   }
 
-  const redirectToMain = () => history.push('/app');
+  if(!state.first_name) return(
+    <Paper className="new-member-container">
+      <div className="header-container">
+        <IconButton onClick={redirectToMain}>
+          <ArrowBack />
+        </IconButton>
+        <Typography variant="h4">Edit Member</Typography>
+      </div>
+      <div>member not found.</div>
+    </Paper>
+  )
 
   return(
     <Paper className="new-member-container">
@@ -83,7 +82,7 @@ function NewMember({ create, history }) {
         <IconButton onClick={redirectToMain}>
           <ArrowBack />
         </IconButton>
-        <Typography variant="h4">Create Member</Typography>
+        <Typography variant="h4">Edit Member</Typography>
       </div>
       <br />
       <div className="action-container">
@@ -177,18 +176,19 @@ function NewMember({ create, history }) {
           className="save-btn"
           color="primary"
           variant="contained"
-          onClick={createMember}
+          onClick={saveMember}
         >Save Member</Button>
       </div>
     </Paper>
   )
 }
 
-
-const mapStateToProps = (state) => ({})
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  create: (member) => dispatch(create(member))
+const mapStateToProps = (state) => ({
+  selectedMember: state.selectedMember
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewMember)
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  update: (member) => dispatch(update(member))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditMember)

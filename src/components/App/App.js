@@ -2,14 +2,12 @@ import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
-import {
-  logout,
-  storeUser
-} from '../../actions/userActions.js';
+import { storeUser } from '../../actions/userActions.js';
 import Header from './Header.js';
 import SideBar from './SideBar.js';
 import Main from '../MainPage/Main.js';
 import NewMember from '../NewMember/NewMember.js';
+import EditMember from '../EditMember/EditMember.js';
 import tryAutologin from '../../helpers/autoLogin.js';
 
 function isAuthenticated(user) {
@@ -36,10 +34,11 @@ function App({ history, user, storeUser }) {
   return(
     <div className="app">
       <SideBar history={history} />
-      <Header user={user} />
+      <Header user={user} history={history} />
       <div>
         <Route path="/app" exact component={Main} />
         <Route path="/app/new_member" exact component={NewMember} />
+        <Route path="/app/edit_member" exact component={EditMember} />
       </div>
     </div>
   )
@@ -50,7 +49,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  logout: (history) => (e) => dispatch(logout(history)),
   storeUser: (user) => dispatch(storeUser(user))
 })
 
