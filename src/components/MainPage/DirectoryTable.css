@@ -23,6 +23,10 @@
   text-overflow: ellipsis;
 }
 
+.edit-btn {
+  position: inherit !important;
+}
+
 .sticky-header th {
   position: sticky;
   top: 0;

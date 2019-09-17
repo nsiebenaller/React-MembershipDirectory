@@ -186,7 +186,7 @@ function DirectoryTable({ members, history, storeSelectedMember }) {
             <TableCell variant="body">{member.state}</TableCell>
             <TableCell variant="body">{formatPhoneNumber(member)}</TableCell>
             <TableCell variant="body" className="email-cell">{member.email}</TableCell>
-            <TableCell variant="body"><Button onClick={redirectToEdit(member)}>Edit</Button></TableCell>
+            <TableCell variant="body"><Button className="edit-btn" onClick={redirectToEdit(member)}>Edit</Button></TableCell>
           </TableRow>
         ))
       }
