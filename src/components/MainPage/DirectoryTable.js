@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
+import fileDownload from 'js-file-download';
 import {
   Table,
   TableBody,
@@ -99,6 +101,11 @@ function DirectoryTable({ members, history, storeSelectedMember }) {
     history.push('/app/edit_member');
   }
 
+  const exportMembers = async () => {
+    const resp = await axios.get("/api/members/export");
+    fileDownload(resp.data, "frcc_members.csv");
+  }
+
   return(
     <div className="directory-table-container">
     <Paper className="directory-table">
@@ -193,9 +200,14 @@ function DirectoryTable({ members, history, storeSelectedMember }) {
       </TableBody>
       <TableFooter className="sticky-footer">
           <TableRow>
+              <td className="footer-actions MuiTableCell-root MuiTablePagination-root MuiTableCell-footer">
+                <div className="MuiToolbar-root MuiToolbar-regular MuiTablePagination-toolbar MuiToolbar-gutters">
+                  <Button onClick={exportMembers}>Export</Button>
+                </div>
+              </td>
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25]}
-                colSpan={7}
+                colSpan={6}
                 count={members.length}
                 rowsPerPage={rowsPerPage}
                 page={page}

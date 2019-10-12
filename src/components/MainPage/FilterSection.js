@@ -1,15 +1,16 @@
 import React from 'react';
 import './FilterSection.css';
-import {
-  Paper,
-  Typography,
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-} from '@material-ui/core'
+import { Paper, Typography, Button } from '@material-ui/core';
+// import {
+//   Paper,
+//   Typography,
+//   Button,
+//   Checkbox,
+//   FormControl,
+//   FormControlLabel,
+//   FormGroup,
+//   FormLabel,
+// } from '@material-ui/core'
 
 export default function FilterSection(props) {
 

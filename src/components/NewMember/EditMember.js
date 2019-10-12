@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Typography, Paper, Button, IconButton } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
-import '../NewMember/NewMember.css';
-import CustomTextField from '../NewMember/TextField.js';
-import StateDropdown from '../NewMember/StateDropdown.js';
-import MonthDropdown from '../NewMember/MonthDropdown.js';
+import './NewMember.css';
+import CustomTextField from './TextField.js';
+import StateDropdown from './StateDropdown.js';
+import MonthDropdown from './MonthDropdown.js';
 import { Months } from '../../static/Months.json';
 import { update } from '../../actions/membersActions.js';
 

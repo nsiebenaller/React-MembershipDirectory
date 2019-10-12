@@ -7,7 +7,7 @@ import Header from './Header.js';
 import SideBar from './SideBar.js';
 import Main from '../MainPage/Main.js';
 import NewMember from '../NewMember/NewMember.js';
-import EditMember from '../EditMember/EditMember.js';
+import EditMember from '../NewMember/EditMember.js';
 import tryAutologin from '../../helpers/autoLogin.js';
 
 function isAuthenticated(user) {
