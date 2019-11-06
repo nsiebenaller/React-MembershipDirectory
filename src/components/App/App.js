@@ -8,6 +8,7 @@ import SideBar from './SideBar.js';
 import Main from '../MainPage/Main.js';
 import NewMember from '../NewMember/NewMember.js';
 import EditMember from '../NewMember/EditMember.js';
+import Settings from '../Settings/Settings.js';
 import tryAutologin from '../../helpers/autoLogin.js';
 
 function isAuthenticated(user) {
@@ -39,6 +40,7 @@ function App({ history, user, storeUser }) {
         <Route path="/app" exact component={Main} />
         <Route path="/app/new_member" exact component={NewMember} />
         <Route path="/app/edit_member" exact component={EditMember} />
+        <Route path="/app/settings" exact component={Settings} />
       </div>
     </div>
   )

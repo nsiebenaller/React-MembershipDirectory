@@ -5,8 +5,9 @@ import { Fab } from '@material-ui/core';
 
 import { getAllMembers } from '../../actions/membersActions.js';
 import SearchBar from './SearchBar.js';
-import FilterSection from './FilterSection.js';
-import DirectoryTable from './DirectoryTable.js';
+//import FilterSection from './FilterSection.js';
+import DirectoryTable from './DirectoryTable/DirectoryTable.js';
+import InfoSection from './InfoSection/InfoSection.js';
 import './Main.css';
 
 function MainPage({ members, getAllMembers, history }) {
@@ -18,6 +19,8 @@ function MainPage({ members, getAllMembers, history }) {
   }, [getAllMembers]);
 
   const [filter, setFilter] = useState({ fn: () => true });
+  const [infoOpen, toggleInfoOpen] = useState(false);
+
   const redirectToNewMember = () => history.push('/app/new_member');
 
   return(
@@ -37,8 +40,9 @@ function MainPage({ members, getAllMembers, history }) {
         </Fab>
       </div>
       <div className="directory-display">
-        <FilterSection />
-        <DirectoryTable members={members.filter(filter.fn)} history={history} />
+        {/*<FilterSection />*/}
+        <DirectoryTable members={members.filter(filter.fn)} history={history} infoOpen={infoOpen} toggleInfoOpen={toggleInfoOpen} />
+        <InfoSection infoOpen={infoOpen} />
       </div>
     </div>
   )

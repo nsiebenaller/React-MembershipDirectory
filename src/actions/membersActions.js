@@ -1,4 +1,5 @@
 import axios from 'axios';
+import fileDownload from 'js-file-download';
 
 export function storeMembers(members) {
   return {
@@ -62,4 +63,9 @@ export function update(member) {
     dispatch(getAllMembers())
     return reply
   }
+}
+
+export async function exportAll() {
+  const resp = await axios.get("/api/members/export");
+  fileDownload(resp.data, "frcc_members.csv");
 }

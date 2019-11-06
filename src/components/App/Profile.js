@@ -25,6 +25,8 @@ function Profile({ user, history, logout}) {
     return () => window.removeEventListener('click', closeIfOpen)
   }, [open]);
 
+  const navigateToSettings = () => history.push("/app/settings");
+
   return(
     <div className="profile-container" ref={self}>
       <div
@@ -43,7 +45,7 @@ function Profile({ user, history, logout}) {
       </div>
       <div className={`profile-options ${open ? 'profile-options-open' : ''}`}>
         <div className={`profile-opt`}>
-          <div className="opt-btn"><Settings />SETTINGS</div>
+          <div className="opt-btn" onClick={navigateToSettings}><Settings />SETTINGS</div>
         </div>
         <div className={`profile-opt`}>
           <div
