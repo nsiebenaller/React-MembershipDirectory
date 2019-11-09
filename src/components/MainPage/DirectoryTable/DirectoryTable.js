@@ -9,7 +9,7 @@ import TableRows from './TableRows.js';
 import TableFoot from './TableFoot.js';
 
 
-export default function DirectoryTable({ members, history, infoOpen, toggleInfoOpen }) {
+export default function DirectoryTable({ members, history, infoOpen, setSelMember, selMember }) {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -49,7 +49,8 @@ export default function DirectoryTable({ members, history, infoOpen, toggleInfoO
             rowsPerPage={rowsPerPage}
             history={history}
             infoOpen={infoOpen}
-            toggleInfoOpen={toggleInfoOpen}
+            setSelMember={setSelMember}
+            selMember={selMember}
           />
           <TableFoot
             numMembers={members.length}

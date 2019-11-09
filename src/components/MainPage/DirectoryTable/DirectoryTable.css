@@ -1,7 +1,7 @@
 .directory-table-container {
   width: 100%;
   margin: 30px 60px 60px 60px;
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  /*transition: all 0.3s cubic-bezier(.25,.8,.25,1);*/
 }
 .info-sec-open {
   margin: 30px 15px 60px 60px;

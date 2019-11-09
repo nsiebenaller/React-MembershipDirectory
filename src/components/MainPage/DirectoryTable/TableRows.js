@@ -9,7 +9,7 @@ import {
 import { storeSelectedMember } from '../../../actions/membersActions.js';
 
 
-function TableRows({ members, order, orderBy, page, rowsPerPage, history, storeSelectedMember, infoOpen, toggleInfoOpen }) {
+function TableRows({ members, order, orderBy, page, rowsPerPage, history, storeSelectedMember, infoOpen, setSelMember, selMember }) {
 
   const formatPhoneNumber = member => {
     const desc = member.home_phone ? 'Home:' : member.cell_phone ? 'Cell:' : ''
@@ -22,7 +22,7 @@ function TableRows({ members, order, orderBy, page, rowsPerPage, history, storeS
     history.push('/app/edit_member');
   }
 
-  const openInfoSection = () => toggleInfoOpen(true);
+  const openInfoSection = (member) => () => setSelMember(selMember !== null && member.id === selMember.id ? null : member);
 
   return(
     <TableBody>
@@ -31,7 +31,7 @@ function TableRows({ members, order, orderBy, page, rowsPerPage, history, storeS
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map((member, idx) => (
         <TableRow key={`member-${idx}`}>
-          <TableCell variant="body" onClick={openInfoSection}>{member.first_name + " " + member.last_name}</TableCell>
+          <TableCell variant="body" onClick={openInfoSection(member)}>{member.first_name + " " + member.last_name}</TableCell>
           <TableCell variant="body" className="address-cell">
             <div>{member.address}</div>
             <div>{member.city}, {member.state} {member.zip}</div>

@@ -19,7 +19,8 @@ function MainPage({ members, getAllMembers, history }) {
   }, [getAllMembers]);
 
   const [filter, setFilter] = useState({ fn: () => true });
-  const [infoOpen, toggleInfoOpen] = useState(false);
+  const [selMember, setSelMember] = useState(null);
+  const infoOpen = selMember !== null;
 
   const redirectToNewMember = () => history.push('/app/new_member');
 
@@ -41,8 +42,8 @@ function MainPage({ members, getAllMembers, history }) {
       </div>
       <div className="directory-display">
         {/*<FilterSection />*/}
-        <DirectoryTable members={members.filter(filter.fn)} history={history} infoOpen={infoOpen} toggleInfoOpen={toggleInfoOpen} />
-        <InfoSection infoOpen={infoOpen} />
+        <DirectoryTable members={members.filter(filter.fn)} history={history} infoOpen={infoOpen} setSelMember={setSelMember} selMember={selMember} />
+        <InfoSection infoOpen={infoOpen} selMember={selMember} setSelMember={setSelMember} />
       </div>
     </div>
   )

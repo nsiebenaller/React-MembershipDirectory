@@ -46,6 +46,7 @@ function cleanMember(member) {
     birth_day: member.birth_day || '',
     birth_month: member.birth_month || '',
     birth_fullyear: member.birth_fullyear || '',
+    tags: member.tags || []
   }
 }
 
@@ -68,4 +69,12 @@ export function update(member) {
 export async function exportAll() {
   const resp = await axios.get("/api/members/export");
   fileDownload(resp.data, "frcc_members.csv");
+}
+
+export function addTag(member_id, tag_id) {
+  return axios.post('/api/members/add_tag', { member_id, tag_id });
+}
+
+export function removeTag(member_id, tag_id) {
+  return axios.post('/api/members/remove_tag', { member_id, tag_id });
 }

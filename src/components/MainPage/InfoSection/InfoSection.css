@@ -3,3 +3,36 @@
   overflow: hidden;
   flex: 1;
 }
+
+.info-title {
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tag-title-section {
+  padding: 10px 20px 10px 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.add-tag-btn {
+  position: absolute !important;
+  right: 20px !important;
+}
+
+.tag-body-section {
+  display: flex;
+  padding: 0px 20px 0px 20px;
+}
+.tag-body-section > * {
+  margin-right: 5px;
+}
+
+.no-tags-text {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+  color: #9e9e9e;
+  font-style: italic;
+}
