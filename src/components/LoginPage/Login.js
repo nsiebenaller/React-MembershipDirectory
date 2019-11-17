@@ -24,7 +24,7 @@ function LoginForm(props) {
     try {
       resp = await login(username, password)
     } catch(e) {
-      setValues({ ...values, error: true })
+      setValues({ ...values, password: '', error: true })
       return
     }
     props.storeUser(resp.data)

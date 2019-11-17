@@ -17,15 +17,18 @@ function Profile({ user, history, logout}) {
   const [open, setOpen] = useState(false);
   const click = () => setOpen(!open);
 
+
+
   useEffect(() => {
-    const closeIfOpen = (e) =>
-      (self && !self.current.contains(e.target) && open) ?
-      setOpen(false) : (null);
-    window.addEventListener('click', closeIfOpen)
-    return () => window.removeEventListener('click', closeIfOpen)
+    const closeIfOpen = (e) => (self && !self.current.contains(e.target) && open) ? setOpen(false) : (null);
+    window.addEventListener('click', closeIfOpen);
+    return () => window.removeEventListener('click', closeIfOpen);
   }, [open]);
 
-  const navigateToSettings = () => history.push("/app/settings");
+  const navigateToSettings = () => {
+    setOpen(false);
+    history.push("/app/settings");
+  }
 
   return(
     <div className="profile-container" ref={self}>
