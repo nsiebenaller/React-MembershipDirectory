@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Chip } from '@material-ui/core';
-import { getAllTags, deleteTag } from '../../actions/tagsActions.js';
+import { Typography, Chip, Button, Fab } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
+import { getAllTags, deleteTag, createTag } from '../../actions/tagsActions.js';
 import './Settings.css';
+import TagsForm from './TagsForm.js';
 
 export default function Settings(props) {
 
   const [allTags, setTags] = useState([]);
+  const [formOpen, setFormOpen] = useState(false);
+  const openForm = () => setFormOpen(true);
+  const closeForm = () => setFormOpen(false);
+  const [tagsForm, setTagsForm] = useState({ name: '', color: '#2196f3' });
+  const setValue = (param) => setTagsForm({ ...tagsForm, ...param });
 
   useEffect(() => {
     (async() => {
@@ -26,7 +33,36 @@ export default function Settings(props) {
 
   return(
     <div className="settings-container">
-      <Typography variant="h4" component="h4">Tags</Typography>
+      <div className="header-container">
+        <Typography variant="h4" component="h4">Tags</Typography>
+        {
+          formOpen &&
+          <Fab
+            color="primary"
+            aria-label="add"
+            size="small"
+            className="tag-action-btn"
+            onClick={closeForm}
+          >
+            <Close />
+          </Fab>
+        }
+        {
+          !formOpen &&
+          <Button
+            className="tag-action-btn"
+            variant="contained"
+            color="primary"
+            onClick={openForm}
+          >Add</Button>
+        }
+      </div>
+
+      {
+        formOpen &&
+        <TagsForm color={tagsForm.color} setValue={setValue} />
+      }
+
       <div className="tags-container">
       {
         allTags.map((tag, idx) => (

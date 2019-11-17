@@ -1,0 +1,42 @@
+.tags-form-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.tags-form-container {
+  display: inline-flex;
+}
+
+.tags-form-container > * {
+  bottom: 0;
+  margin-right: 10px;
+}
+
+.tags-name-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.tags-color-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.tags-color-display {
+  margin-top: 24px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.40);
+}
+
+.color-square {
+  width: 44px;
+  height: 44px;
+  margin: 5px;
+}
+
+.create-tag-btn {
+  margin-top: 24px !important;
+}
