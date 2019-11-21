@@ -14,20 +14,22 @@ export default function Settings(props) {
   const [tagsForm, setTagsForm] = useState({ name: '', color: '#2196f3' });
   const setValue = (param) => setTagsForm({ ...tagsForm, ...param });
 
+  const retrieveTags = async () => {
+    const resp = await getAllTags();
+    const tags = addColorClasses(resp.data);
+    setTags(tags);
+  }
+
   useEffect(() => {
-    (async() => {
-      const resp = await getAllTags();
-      const tags = addColorClasses(resp.data);
-      setTags(tags);
-    })();
+    retrieveTags();
   }, []);
 
   const handleDeleteTag = (tagID) => async () => {
-    const resp = await deleteTag(tagID);
-    if(resp.data.success) {
-      const resp = await getAllTags();
-      const tags = addColorClasses(resp.data);
-      setTags(tags);
+    if(window.confirm("Are you sure you'd like to delete this tag?")) {
+      const resp = await deleteTag(tagID);
+      if(resp.data.success) {
+        retrieveTags();
+      }
     }
   }
 
@@ -58,19 +60,25 @@ export default function Settings(props) {
         }
       </div>
 
-      {
-        formOpen &&
-        <TagsForm color={tagsForm.color} setValue={setValue} />
-      }
+      <TagsForm
+        isOpen={formOpen}
+        color={tagsForm.color}
+        name={tagsForm.name}
+        setValue={setValue}
+        closeForm={closeForm}
+        retrieveTags={retrieveTags}
+      />
 
       <div className="tags-container">
+        {console.log(allTags)}
       {
         allTags.map((tag, idx) => (
+
           <Chip
             key={`tag-id-${idx}`}
             label={tag.name}
             classes={{ root: tag.colorClass }}
-            onClick={handleDeleteTag(tag.id)}
+            onDelete={handleDeleteTag(tag.id)}
           />
         ))
       }
@@ -82,20 +90,13 @@ export default function Settings(props) {
 }
 
 function addColorClasses(tags) {
-  const colorClasses = {};
-  return tags.map((tag) => {
-    if(!colorClasses[tag.color] && !document.getElementById(tag.color)) {
-      var element  = document.createElement("style");
-      element.id = tag.color ; // so you can get and alter/replace/remove later
-      element.innerHTML = ".custom-color-" + tag.id + " { background:" + tag.color + "; color: white; }" ; // css rule
-      var header = document.getElementsByTagName("HEAD")[0] ;
-      header.appendChild(element);
-      colorClasses[tag.color] = "custom-color-" + tag.id;
-      tag.colorClass = "custom-color-" + tag.id;
-      return tag;
-    } else {
-      tag.colorClass = colorClasses[tag.color];
-      return tag;
-    }
-  })
+  const colorMap = {
+    '#f44336': 'cc-red',
+    '#9c27b0': 'cc-purple',
+    '#2196f3': 'cc-blue',
+    '#4caf50': 'cc-green',
+    '#ff9800': 'cc-orange'
+  }
+
+  return tags.map((tag) => ({ ...tag, colorClass: colorMap[tag.color] }));
 }

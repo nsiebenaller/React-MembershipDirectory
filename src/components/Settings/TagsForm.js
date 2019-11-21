@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField, Select, MenuItem, FormControl, Typography, OutlinedInput, Button } from '@material-ui/core';
 import './TagsForm.css';
+import { createTag } from '../../actions/tagsActions.js';
 
 const colorOptions = [
   '#f44336', //red
@@ -10,18 +11,27 @@ const colorOptions = [
   '#ff9800' //orange
 ];
 
-export default function TagsForm({ color, setValue }) {
+export default function TagsForm({ isOpen, color, name, setValue, closeForm, retrieveTags }) {
 
-  const setColor = (e) => setValue({ color: e.target.value })
+  const setColor = (e) => setValue({ color: e.target.value });
+  const setName = (e) => setValue({ name: e.target.value });
+
+  const handleCreateTag = async () => {
+    const resp = await createTag({ name: name, color: color });
+    if(resp.data.success) closeForm();
+    else window.alert("Error creating tag!");
+    retrieveTags();
+  }
 
   return(
-    <div className="tags-form-row">
+    <div className={`tags-form-row ${isOpen ? '' : 'tags-form-closed'}`}>
       <div className={"tags-form-container"}>
         <div className="tags-name-input">
           <Typography component="b">Name</Typography>
           <TextField
             variant="outlined"
-            onChange={setColor}
+            value={name}
+            onChange={setName}
           />
         </div>
 
@@ -45,7 +55,13 @@ export default function TagsForm({ color, setValue }) {
           <div className="color-square" style={{ background: color }} />
         </div>
 
-        <Button className={"create-tag-btn"} variant="outlined" color="secondary">Create</Button>
+        <Button
+          className={"create-tag-btn"}
+          variant="outlined"
+          color="secondary"
+          disabled={name === ''}
+          onClick={handleCreateTag}
+        >Create</Button>
 
       </div>
     </div>

@@ -4,6 +4,15 @@
   justify-content: center;
   margin-top: 10px;
   margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.20);
+  border-radius: 4px;
+  padding: 10px;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.tags-form-closed {
+  height: 0px;
+  overflow: hidden;
+  padding: 0px 10px 0px 10px;
 }
 
 .tags-form-container {
@@ -39,4 +48,44 @@
 
 .create-tag-btn {
   margin-top: 24px !important;
+}
+
+.cc-red {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+.cc-red:hover {
+  background-color: #607d8b !important;
+}
+
+.cc-purple {
+  background-color: #9c27b0 !important;
+  color: white !important;
+}
+.cc-purple:hover {
+  background-color: #607d8b !important;
+}
+
+.cc-blue {
+  background-color: #2196f3 !important;
+  color: white !important;
+}
+.cc-blue:hover {
+  background-color: #607d8b !important;
+}
+
+.cc-green {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+.cc-green:hover {
+  background-color: #607d8b !important;
+}
+
+.cc-orange {
+  background-color: #ff9800 !important;
+  color: white !important;
+}
+.cc-orange:hover {
+  background-color: #607d8b !important;
 }

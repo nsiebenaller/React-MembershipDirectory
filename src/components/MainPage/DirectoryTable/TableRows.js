@@ -30,8 +30,8 @@ function TableRows({ members, order, orderBy, page, rowsPerPage, history, storeS
       sortMembers(members, order, orderBy)
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map((member, idx) => (
-        <TableRow key={`member-${idx}`}>
-          <TableCell variant="body" onClick={openInfoSection(member)}>{member.first_name + " " + member.last_name}</TableCell>
+        <TableRow key={`member-${idx}`} className="clickable-row" onClick={openInfoSection(member)}>
+          <TableCell variant="body">{member.first_name + " " + member.last_name}</TableCell>
           <TableCell variant="body" className="address-cell">
             <div>{member.address}</div>
             <div>{member.city}, {member.state} {member.zip}</div>
