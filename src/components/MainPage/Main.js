@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { getAllMembers } from '../../actions/membersActions.js';
+import { getTags } from '../../actions/tagsActions.js';
 import ActionBar from './ActionBar/ActionBar.js';
 import DirectoryTable from './DirectoryTable/DirectoryTable.js';
 import InfoSection from './InfoSection/InfoSection.js';
 import FilterModal from './FilterModal/FilterModal.js';
 import './Main.css';
 
-function MainPage({ members, getAllMembers, history }) {
+function MainPage({ members, getAllMembers, getTags, history }) {
 
   useEffect(() => {
-    (async function fetch() {
-      await getAllMembers()
+    (() => {
+      getTags();
+      getAllMembers();
     })()
-  }, [getAllMembers]);
+  }, [getTags, getAllMembers]);
 
   const [state, setVal] = useState({
     filterFn: () => true,
@@ -68,7 +70,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getAllMembers: () => dispatch(getAllMembers())
+  getAllMembers: () => dispatch(getAllMembers()),
+  getTags: () => dispatch(getTags()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage)
