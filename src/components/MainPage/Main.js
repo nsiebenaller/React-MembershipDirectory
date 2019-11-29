@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Add, FilterList } from '@material-ui/icons';
-import { Fab } from '@material-ui/core';
 
 import { getAllMembers } from '../../actions/membersActions.js';
 import ActionBar from './ActionBar/ActionBar.js';

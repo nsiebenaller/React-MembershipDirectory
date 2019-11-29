@@ -1,6 +1,7 @@
 const initialState = {
   user: {},
   members: [],
-  selectedMember: {}
+  selectedMember: {},
+  tags: []
 };
 export default initialState;
