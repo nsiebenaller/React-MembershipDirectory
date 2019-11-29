@@ -1,0 +1,10 @@
+.filter-modal .MuiPaper-root {
+  min-width: 400px !important;
+}
+
+.tags-container {
+  display: flex;
+}
+.tags-container > * {
+  margin-right: 5px;
+}

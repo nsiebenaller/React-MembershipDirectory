@@ -21,3 +21,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* TAG COLORS */
+.cc-red {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+.cc-red:hover {
+  background-color: #607d8b !important;
+}
+
+.cc-purple {
+  background-color: #9c27b0 !important;
+  color: white !important;
+}
+.cc-purple:hover {
+  background-color: #607d8b !important;
+}
+
+.cc-blue {
+  background-color: #2196f3 !important;
+  color: white !important;
+}
+.cc-blue:hover {
+  background-color: #607d8b !important;
+}
+
+.cc-green {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+.cc-green:hover {
+  background-color: #607d8b !important;
+}
+
+.cc-orange {
+  background-color: #ff9800 !important;
+  color: white !important;
+}
+.cc-orange:hover {
+  background-color: #607d8b !important;
+}

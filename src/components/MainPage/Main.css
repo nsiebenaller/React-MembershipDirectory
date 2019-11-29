@@ -16,10 +16,21 @@
   overflow-x: hidden;
 }
 
+/* FILTER BUTTON */
+.filter-btn {
+  margin-right: 10px !important;
+}
+.filter-btn > span {
+  width: 100px !important;
+}
+.filter-label {
+
+}
+
+/* NEW MEMBER BUTTON */
 .new-member-btn > span {
   width: 150px !important;
 }
-
 .new-member-label {
   white-space: nowrap;
 }

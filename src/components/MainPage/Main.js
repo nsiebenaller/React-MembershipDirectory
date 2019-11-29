@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Add } from '@material-ui/icons';
+import { Add, FilterList } from '@material-ui/icons';
 import { Fab } from '@material-ui/core';
 
 import { getAllMembers } from '../../actions/membersActions.js';
-import SearchBar from './SearchBar.js';
+import ActionBar from './ActionBar/ActionBar.js';
 import DirectoryTable from './DirectoryTable/DirectoryTable.js';
 import InfoSection from './InfoSection/InfoSection.js';
+import FilterModal from './FilterModal/FilterModal.js';
 import './Main.css';
 
 function MainPage({ members, getAllMembers, history }) {
@@ -17,34 +18,49 @@ function MainPage({ members, getAllMembers, history }) {
     })()
   }, [getAllMembers]);
 
-  const [filter, setFilter] = useState({ fn: () => true });
-  const [selMember, setSelMember] = useState(null);
-  const infoOpen = selMember !== null;
+  const [state, setVal] = useState({
+    filterFn: () => true,
+    tagFilter: () => true,
+    selectedMember: null,
+    isFilterModalOpen: false
+  })
+  const { filterFn, tagFilter, selectedMember, isFilterModalOpen } = state;
+  const setFilter = (filterFn) => setVal({ ...state, filterFn });
+  const setTagFilter = (tagFilter) => setVal({ ...state, isFilterModalOpen: false, tagFilter });
+  const setSelectedMember = (selectedMember) => setVal({ ...state, selectedMember });
+  const setFilterModal = (isOpen) => setVal({ ...state, isFilterModalOpen: isOpen });
 
+  const infoOpen = selectedMember !== null;
   const redirectToNewMember = () => history.push('/app/new_member');
-
-  const selectedMember = selMember ? members.find(m => m.id === selMember.id) : null;
+  const openFilterModal = () => setFilterModal(true);
+  const membersToRender = members.filter(filterFn).filter(tagFilter);
 
   return(
     <div className="directory-container">
-      <div className="directory-actions">
-        <SearchBar setFilter={setFilter} history={history} />
-        <Fab
-          className="new-member-btn"
-          variant="extended"
-          size="large"
-          color="primary"
-          aria-label="add"
-          onClick={redirectToNewMember}
-        >
-          <Add />
-          <div className="new-member-label">New Member</div>
-        </Fab>
-      </div>
+      <ActionBar
+        setFilter={setFilter}
+        redirectToNewMember={redirectToNewMember}
+        openFilterModal={openFilterModal}
+      />
       <div className="directory-display">
-        <DirectoryTable members={members.filter(filter.fn)} history={history} infoOpen={infoOpen} setSelMember={setSelMember} selMember={selectedMember} />
-        <InfoSection infoOpen={infoOpen} selMember={selectedMember} setSelMember={setSelMember} />
+        <DirectoryTable
+          members={membersToRender}
+          history={history}
+          infoOpen={infoOpen}
+          setSelMember={setSelectedMember}
+          selMember={selectedMember}
+        />
+        <InfoSection
+          infoOpen={infoOpen}
+          selMember={selectedMember}
+          setSelMember={selectedMember}
+        />
       </div>
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        setOpen={setFilterModal}
+        setTagFilter={setTagFilter}
+      />
     </div>
   )
 };

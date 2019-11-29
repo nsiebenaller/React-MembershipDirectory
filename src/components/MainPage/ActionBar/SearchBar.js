@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SearchBar.css';
 import { Search, Clear } from '@material-ui/icons';
 import { IconButton } from '@material-ui/core';
 
-export default function SearchBar({ setFilter }) {
+export default function SearchBar({ setFilter, setText, text }) {
 
-  const [text, setText] = useState('');
   const onChange = (e) => setText(e.target.value);
-  const onSearch = () => setFilter({ fn: (member) => {
+  const onSearch = () => setFilter((member) => {
     return (
       member.first_name.toUpperCase().includes(text.toUpperCase()) ||
       member.last_name.toUpperCase().includes(text.toUpperCase())
-    )} })
+    )})
   const onClear = () => {
-    setFilter({ fn: () => true });
+    setFilter(() => true);
     setText('');
   }
   const onEnter = (e) => (e.key === 'Enter') ? (onSearch()) : (null)
