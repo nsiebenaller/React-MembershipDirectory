@@ -36,7 +36,7 @@ function App({ history, user, storeUser }) {
     <div className="app">
       <SideBar history={history} />
       <Header user={user} history={history} />
-      <div>
+      <div className="main">
         <Route path="/app" exact component={Main} />
         <Route path="/app/new_member" exact component={NewMember} />
         <Route path="/app/edit_member" exact component={EditMember} />

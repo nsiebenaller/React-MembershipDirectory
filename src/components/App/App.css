@@ -5,11 +5,12 @@
   overflow: hidden;
 }
 
-.app > :nth-child(3) {
+.main {
   position: absolute;
   height: calc(100% - 70px);
   width: calc(100% - 70px);
   bottom: 0;
   right: 0;
   background: #f3f5f6;
+  overflow: auto;
 }
