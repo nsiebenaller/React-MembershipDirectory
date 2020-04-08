@@ -30,8 +30,8 @@ function TagModal({ open, closeModal, getAllMembers, memberName, selectedTags, a
       added.push(addTag(memberID, t.id));
     })
 
-    const removedCompleted = await Promise.all(removed);
-    const addedCompleted = await Promise.all(added);
+    await Promise.all(removed);
+    await Promise.all(added);
     getAllMembers();
     closeModal();
   };

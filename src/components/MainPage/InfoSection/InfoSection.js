@@ -3,16 +3,11 @@ import {
   Paper,
   Typography,
   Button,
-  Chip,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
+  Chip
 } from '@material-ui/core';
 import './InfoSection.css';
-import { createTag, getAllTags } from '../../../actions/tagsActions.js';
-import { addTag, removeTag } from '../../../actions/membersActions.js';
+import { getAllTags } from '../../../actions/tagsActions.js';
+import { removeTag } from '../../../actions/membersActions.js';
 import TagModal from './TagModal.js';
 
 
@@ -50,7 +45,7 @@ export default function InfoSection({ infoOpen, selMember, setSelMember }) {
 
   const handleRemoveTag = (tagID) => async() => {
     if(window.confirm("Are you sure you'd like to remove this tag?")) {
-      const resp = removeTag(selMember.id, tagID)
+      removeTag(selMember.id, tagID)
       const member = selMember;
       member.tags = selMember.tags.filter((tag) => tag.id !== tagID);
       setSelMember(member)

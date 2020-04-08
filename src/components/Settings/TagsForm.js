@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Select, MenuItem, FormControl, Typography, OutlinedInput, Button } from '@material-ui/core';
+import { TextField, Select, MenuItem, Typography, OutlinedInput, Button } from '@material-ui/core';
 import './TagsForm.css';
 import { createTag } from '../../actions/tagsActions.js';
 

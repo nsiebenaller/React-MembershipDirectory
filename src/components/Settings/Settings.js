@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Chip, Button, Fab } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
-import { getAllTags, deleteTag, createTag } from '../../actions/tagsActions.js';
+import { getAllTags, deleteTag } from '../../actions/tagsActions.js';
 import './Settings.css';
 import TagsForm from './TagsForm.js';
 
