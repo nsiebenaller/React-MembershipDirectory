@@ -7,9 +7,9 @@ import CustomTextField from './TextField.js';
 import StateDropdown from './StateDropdown.js';
 import MonthDropdown from './MonthDropdown.js';
 import { Months } from '../../static/Months.json';
-import { update } from '../../actions/membersActions.js';
+import { update, deleteMember } from '../../actions/membersActions.js';
 
-function EditMember({ selectedMember, history, update }) {
+function EditMember({ selectedMember, history, update, deleteMember }) {
 
   const [state, setValue] = useState({});
   const setState = (name) => (e) => setValue({ ...state, [name]: e.target.value });
@@ -61,6 +61,13 @@ function EditMember({ selectedMember, history, update }) {
     }
     else {
       window.alert("Error saving member!")
+    }
+  }
+
+  const tryDeleteMember = async () => {
+    if(window.confirm("Are you sure you'd like to delete this member?")) {
+      deleteMember(state.id)
+      redirectToMain()
     }
   }
 
@@ -178,6 +185,12 @@ function EditMember({ selectedMember, history, update }) {
           variant="contained"
           onClick={saveMember}
         >Save Member</Button>
+        <Button
+          className="delete-btn"
+          color="secondary"
+          variant="contained"
+          onClick={tryDeleteMember}
+        >Delete Member</Button>
       </div>
     </Paper>
   )
@@ -188,7 +201,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  update: (member) => dispatch(update(member))
+  update: (member) => dispatch(update(member)),
+  deleteMember: (member_id) => dispatch(deleteMember(member_id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditMember)

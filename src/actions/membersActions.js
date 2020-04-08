@@ -66,6 +66,14 @@ export function update(member) {
   }
 }
 
+export function deleteMember(member_id) {
+  return async (dispatch) => {
+    const reply = await axios.post('/api/members/delete', {member_id: member_id});
+    dispatch(getAllMembers())
+    return reply
+  }
+}
+
 export async function exportAll() {
   const resp = await axios.get("/api/members/export");
   fileDownload(resp.data, "frcc_members.csv");

@@ -48,6 +48,12 @@
 }
 .save-btn {
   margin-top: 10px !important;
+  margin-right: 10px !important;
+  width: 50%;
+}
+.delete-btn {
+  margin-top: 10px !important;
+  margin-left: 10px !important;
   width: 50%;
 }
 

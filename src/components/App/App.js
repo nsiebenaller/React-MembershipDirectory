@@ -15,7 +15,7 @@ function isAuthenticated(user) {
   return!!(user.id && user.username)
 }
 
-function App({ history, user, storeUser }) {
+function App({ history, user, storeUser, deleteMember }) {
 
   useEffect(() => {
     async function doAccessFilter() {
@@ -51,7 +51,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  storeUser: (user) => dispatch(storeUser(user))
+  storeUser: (user) => dispatch(storeUser(user)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
